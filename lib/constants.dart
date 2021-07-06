@@ -19,3 +19,16 @@ final List<String> agendas=[
 enum Occupation {Doctor,Other}
 
 enum Gender {Male,Female,Other}
+
+const BLOG_DATA =[
+  {
+    "image":"assets/images/blogimage1.jpg",
+    "title":"Coping with an Illness or Serious Health Event",
+    "written":"Lawrence Robinson"
+  },
+  {
+    "image":"assets/images/blogimage2.webp",
+    "title":"Living Well with a Disability",
+    "written":"Melinda Smith, M.A"
+  }
+];

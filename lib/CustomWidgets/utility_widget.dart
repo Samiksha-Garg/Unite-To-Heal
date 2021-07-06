@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:UniteToHeal/constants.dart';
 
 class UtilityWidget extends StatelessWidget {
-  const UtilityWidget({Key? key,required this.width, required this.title, required this.image}) : super(key: key);
+  const UtilityWidget({Key? key,required this.width, required this.title, required this.image,required this.function}) : super(key: key);
 
   final double width;
   final String image;
   final String title;
+  final void Function()? function;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class UtilityWidget extends StatelessWidget {
             child: Material(
               color: kPurple,
               child: InkWell(
-                onTap: () {},
+                onTap: function,
                 child: Center(
                   child: Text(
                     title,

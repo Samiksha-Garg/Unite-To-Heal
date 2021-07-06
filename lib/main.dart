@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.id:(context)=>HomePage(),
         SignUp.id:(context)=>SignUp(),
-        LogInPage.id:(context)=>LogInPage()
+        LogInPage.id:(context)=>LogInPage(),
+        BlogPage.id:(context)=>BlogPage(),
       },
       title: 'Unite To Heal',
       theme: ThemeData(

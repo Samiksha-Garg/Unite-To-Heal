@@ -7,3 +7,5 @@ export 'contact_us_bubble.dart';
 export 'input_text_box.dart';
 export 'Radio_gender_tile.dart';
 export 'Radio_occ_tile.dart';
+export 'blog_card.dart';
+export 'blog_list.dart';

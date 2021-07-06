@@ -1,3 +1,4 @@
+import 'package:UniteToHeal/constants.dart';
 import 'package:flutter/material.dart';
 
 class InputBox extends StatelessWidget {
@@ -14,6 +15,9 @@ class InputBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),
+        border: Border.all(
+          color: kPurple,
+        )
       ),
       child: TextField(
         cursorColor: Colors.grey,

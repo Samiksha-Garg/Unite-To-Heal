@@ -39,11 +39,16 @@ class HomePage extends StatelessWidget {
                   width: size.width * 0.20,
                   title: 'Blog',
                   image: 'assets/images/blog_image.jpg',
+                  function: () {
+                    Navigator.pushNamed(context, BlogPage.id);
+                  },
                 ),
                 UtilityWidget(
                   width: size.width * 0.20,
                   title: 'Donate',
                   image: 'assets/images/donate_image.jpeg',
+                  function: () {
+                  },
                 )
               ],
             )
