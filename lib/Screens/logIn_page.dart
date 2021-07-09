@@ -27,7 +27,7 @@ class _LogInPageState extends State<LogInPage> {
                 style: TextStyle(
                   color: kPurple,
                   fontFamily: 'Pacifico',
-                  fontSize: 30,
+                  fontSize: 25,
                 ),
               ),
             ),

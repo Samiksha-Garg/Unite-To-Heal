@@ -31,7 +31,7 @@ class _SignUpState extends State<SignUp> {
               style: TextStyle(
                 color: kPurple,
                 fontFamily: 'Pacifico',
-                fontSize: 30,
+                fontSize: 25,
               ),
             ),
           ),

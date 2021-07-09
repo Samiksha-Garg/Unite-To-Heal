@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            leadingWidth: 180,
+            leadingWidth: 200,
             leading: Center(
               child: Padding(
                 padding: const EdgeInsets.only(left: 13.0),
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                   style: TextStyle(
                     color: kPurple,
                     fontFamily: 'Pacifico',
-                    fontSize: 30,
+                    fontSize: 25,
                   ),
                 ),
               ),

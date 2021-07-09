@@ -27,11 +27,11 @@ class _DonateHomePageState extends State<DonateHomePage> {
           child: Padding(
             padding: const EdgeInsets.only(left: 13.0),
             child: Text(
-              'Welcome!',
+              'Donate!',
               style: TextStyle(
                 color: kPurple,
                 fontFamily: 'Pacifico',
-                fontSize: 30,
+                fontSize: 25,
               ),
             ),
           ),
