@@ -19,17 +19,15 @@ class BlogCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           color: color,
         ),
-        child: Flexible(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                    fontSize: 35,
-                    color: kDarkBlue,
-                    fontFamily: 'Rakkas'
-                ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Center(
+            child: Text(
+              title,
+              style: TextStyle(
+                  fontSize: 35,
+                  color: kDarkBlue,
+                  fontFamily: 'Rakkas'
               ),
             ),
           ),

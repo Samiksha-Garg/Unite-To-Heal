@@ -9,3 +9,5 @@ export 'Radio_gender_tile.dart';
 export 'Radio_occ_tile.dart';
 export 'blog_card.dart';
 export 'blog_list.dart';
+export 'Radio_payment_tile.dart';
+export 'payment_tile.dart';

@@ -20,6 +20,8 @@ enum Occupation {Doctor,Other}
 
 enum Gender {Male,Female,Other}
 
+enum Payment{One_Time,Monthly}
+
 const BLOG_DATA =[
   {
     "image":"assets/images/blogimage1.jpg",

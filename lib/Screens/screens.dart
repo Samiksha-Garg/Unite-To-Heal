@@ -4,3 +4,4 @@ export 'contact_us_page.dart';
 export 'signUp_page.dart';
 export 'logIn_page.dart';
 export 'blog_home_screen.dart';
+export 'donate_home_screen.dart';

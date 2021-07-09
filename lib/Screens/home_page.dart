@@ -48,6 +48,7 @@ class HomePage extends StatelessWidget {
                   title: 'Donate',
                   image: 'assets/images/donate_image.jpeg',
                   function: () {
+                    Navigator.pushNamed(context, DonateHomePage.id);
                   },
                 )
               ],

@@ -66,6 +66,7 @@ class _BlogPageState extends State<BlogPage> {
                     ],
                   ),
                 ),
+                Padding(padding: EdgeInsets.only(bottom: 10)),
                 Expanded(
                   child: ListView.builder(
                       itemCount: BLOG_DATA.length,

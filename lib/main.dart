@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         SignUp.id:(context)=>SignUp(),
         LogInPage.id:(context)=>LogInPage(),
         BlogPage.id:(context)=>BlogPage(),
+        DonateHomePage.id:(context)=>DonateHomePage(),
       },
       title: 'Unite To Heal',
       theme: ThemeData(
