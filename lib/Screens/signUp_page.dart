@@ -89,40 +89,43 @@ class _SignUpState extends State<SignUp> {
                           padding: const EdgeInsets.all(10.0),
                           child: InputBox(title: 'Enter your email Id', obscureText: false, icon: Icons.mail,),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RadioGenderTile(
-                                groupValue: _gender,
-                                value: Gender.Male,
-                                function: (Gender? value) {
-                                  setState(() {
-                                    _gender=value;
-                                  });
-                                },
-                                title: 'Male'
-                            ),
-                            RadioGenderTile(
-                                groupValue: _gender,
-                                value: Gender.Female,
-                                function: (Gender? value) {
-                                  setState(() {
-                                    _gender=value;
-                                  });
-                                },
-                                title: 'Female'
-                            ),
-                            RadioGenderTile(
-                                groupValue: _gender,
-                                value: Gender.Other,
-                                function: (Gender? value) {
-                                  setState(() {
-                                    _gender=value;
-                                  });
-                                },
-                                title: 'Other'
-                            ),
-                          ],
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RadioGenderTile(
+                                  groupValue: _gender,
+                                  value: Gender.Male,
+                                  function: (Gender? value) {
+                                    setState(() {
+                                      _gender=value;
+                                    });
+                                  },
+                                  title: 'Male'
+                              ),
+                              RadioGenderTile(
+                                  groupValue: _gender,
+                                  value: Gender.Female,
+                                  function: (Gender? value) {
+                                    setState(() {
+                                      _gender=value;
+                                    });
+                                  },
+                                  title: 'Female'
+                              ),
+                              RadioGenderTile(
+                                  groupValue: _gender,
+                                  value: Gender.Other,
+                                  function: (Gender? value) {
+                                    setState(() {
+                                      _gender=value;
+                                    });
+                                  },
+                                  title: 'Other'
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 20,left: 10,right: 10,bottom: 10),
@@ -136,30 +139,33 @@ class _SignUpState extends State<SignUp> {
                           padding: const EdgeInsets.all(10.0),
                           child: InputBox(title: 'Enter Password', obscureText: true, icon: Icons.password,),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RadioOccTile(
-                                groupValue: _character,
-                                value: Occupation.Doctor,
-                                function: (Occupation? value) {
-                                  setState(() {
-                                    _character=value;
-                                  });
-                                },
-                                title: 'Doctor'
-                            ),
-                            RadioOccTile(
-                                groupValue: _character,
-                                value: Occupation.Other,
-                                function: (Occupation? value) {
-                                  setState(() {
-                                    _character=value;
-                                  });
-                                },
-                                title: 'Other'
-                            ),
-                          ],
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RadioOccTile(
+                                  groupValue: _character,
+                                  value: Occupation.Doctor,
+                                  function: (Occupation? value) {
+                                    setState(() {
+                                      _character=value;
+                                    });
+                                  },
+                                  title: 'Doctor'
+                              ),
+                              RadioOccTile(
+                                  groupValue: _character,
+                                  value: Occupation.Other,
+                                  function: (Occupation? value) {
+                                    setState(() {
+                                      _character=value;
+                                    });
+                                  },
+                                  title: 'Other'
+                              ),
+                            ],
+                          ),
                         ),
                         TextButton(
                           style: TextButton.styleFrom(
