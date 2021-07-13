@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "581573347267",
+    "project_id": "unite-to-heal",
+    "storage_bucket": "unite-to-heal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581573347267:android:c3a1517139ee09f08b5f76",
+        "android_client_info": {
+          "package_name": "com.SamikshaGarg.unite_to_heal_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581573347267-lql6mjidr822134a7lqjgpbs02v544q1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg1YbldFeRpdyE0Zq_fZl-OmcXjH1XVG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581573347267-lql6mjidr822134a7lqjgpbs02v544q1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "581573347267-aj6jl5egdrso2upfk8ac1a0oajqtlafv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uniteToHealProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

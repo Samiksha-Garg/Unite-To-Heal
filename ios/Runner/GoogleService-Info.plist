@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>581573347267-aj6jl5egdrso2upfk8ac1a0oajqtlafv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.581573347267-aj6jl5egdrso2upfk8ac1a0oajqtlafv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD12BtKv1dLjj3vzyVEFf7uR48YuwPy3UE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>581573347267</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.uniteToHealProject</string>
+	<key>PROJECT_ID</key>
+	<string>unite-to-heal</string>
+	<key>STORAGE_BUCKET</key>
+	<string>unite-to-heal.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:581573347267:ios:73670e6cec3f70048b5f76</string>
+</dict>
+</plist>
