@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
   bool _nameValidate = false;
   bool _usernameValidate = false;
 
-  final String errorM= '... Can\'t leave this field empty';
+  String? _errorM = null;
 
   @override
   void dispose() {
@@ -82,6 +82,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
+            showAlert(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
               child: Container(
@@ -209,8 +210,8 @@ class _SignUpState extends State<SignUp> {
                               try {
                                 final newUser = await _auth
                                     .createUserWithEmailAndPassword(
-                                    email: _email.text.trim(),
-                                    password: _password.text.trim());
+                                    email: _email.text,
+                                    password: _password.text);
 
                                 if (newUser != null) {
                                   Navigator.pushNamedAndRemoveUntil(
@@ -223,6 +224,10 @@ class _SignUpState extends State<SignUp> {
                               }
                               catch (e) {
                                 print(e);
+                                setState(() {
+                                  showSpinner = false;
+                                  _errorM = e.toString();
+                                });
                               }
                             }
 
@@ -304,6 +309,35 @@ class _SignUpState extends State<SignUp> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget showAlert() {
+    if(_errorM!=null) {
+      return Container(
+        color: Colors.red,
+        width: double.infinity,
+        padding: EdgeInsets.all(8),
+        child: Row(
+          children: [
+            Padding(padding: EdgeInsets.only(right: 8), child: Icon(Icons.error_outline,color: Colors.white,),),
+            Expanded(child:Text(_errorM.toString(),style: TextStyle(color: Colors.white),)),
+            Padding(padding: EdgeInsets.only(left: 8),
+              child: IconButton(
+                icon: Icon(Icons.close,color: Colors.white,),
+                onPressed: (){
+                  setState(() {
+                    _errorM = null;
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+      );
+    }
+    return SizedBox(
+      height: 0,
     );
   }
 }

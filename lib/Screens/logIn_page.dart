@@ -23,6 +23,8 @@ class _LogInPageState extends State<LogInPage> {
 
   bool showSpinner = false;
 
+  String? _errorM = null;
+
   @override
   void dispose() {
     _email.dispose();
@@ -72,6 +74,7 @@ class _LogInPageState extends State<LogInPage> {
                       ),
                     ),
                   ),
+                  showAlert(),
                   Padding(
                     padding: EdgeInsets.all(20),
                     child: Container(
@@ -124,6 +127,9 @@ class _LogInPageState extends State<LogInPage> {
                                   }
                                 }
                                 catch(e){
+                                  setState(() {
+                                    _errorM = e.toString();
+                                  });
                                   print(e);
                                 }
                                 setState(() {
@@ -205,6 +211,35 @@ class _LogInPageState extends State<LogInPage> {
               ),
             )
         )
+    );
+  }
+
+  Widget showAlert() {
+    if(_errorM!=null) {
+      return Container(
+        color: Colors.red,
+        width: double.infinity,
+        padding: EdgeInsets.all(8),
+        child: Row(
+          children: [
+            Padding(padding: EdgeInsets.only(right: 8), child: Icon(Icons.error_outline,color: Colors.white,),),
+            Expanded(child:Text(_errorM.toString(),style: TextStyle(color: Colors.white),)),
+            Padding(padding: EdgeInsets.only(left: 8),
+              child: IconButton(
+                icon: Icon(Icons.close,color: Colors.white,),
+                onPressed: (){
+                  setState(() {
+                    _errorM = null;
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+      );
+    }
+    return SizedBox(
+      height: 0,
     );
   }
 }
