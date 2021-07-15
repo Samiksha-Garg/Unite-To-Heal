@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:UniteToHeal/constants.dart';
 import 'package:UniteToHeal/CustomWidgets/custom_widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'screens.dart';
+import 'package:UniteToHeal/Loading.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -13,10 +15,25 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+
+  final _email=TextEditingController();
+  final _password = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  bool showSpinner = false;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return showSpinner? Loading() : Scaffold(
         appBar: AppBar(
           leadingWidth: 180,
           leading: Center(
@@ -72,9 +89,11 @@ class _LogInPageState extends State<LogInPage> {
                               height: 10,
                             ),
                             InputBox(
-                                title: 'Enter your username',
-                                icon: Icons.person,
-                                obscureText: false
+                                title: 'Enter your email id',
+                                icon: Icons.mail,
+                                obscureText: false,
+                                control: _email,
+                              visible: false,
                             ),
                             SizedBox(
                               height: 20,
@@ -82,7 +101,9 @@ class _LogInPageState extends State<LogInPage> {
                             InputBox(
                                 title: 'Enter your password',
                                 icon: Icons.password,
-                                obscureText: true
+                                obscureText: true,
+                                control: _password,
+                              visible: false,
                             ),
                             SizedBox(
                               height: 20,
@@ -91,7 +112,24 @@ class _LogInPageState extends State<LogInPage> {
                               style: TextButton.styleFrom(
                                   primary: Colors.white
                               ),
-                              onPressed: () {},
+                              onPressed: () async {
+                                setState(() {
+                                  showSpinner = true;
+                                });
+                                try{
+                                  final user = await _auth.signInWithEmailAndPassword(email: _email.text.trim(), password: _password.text.trim());
+
+                                  if(user !=null) {
+                                    Navigator.pushNamedAndRemoveUntil(context, UserPage.id, (route) => false);
+                                  }
+                                }
+                                catch(e){
+                                  print(e);
+                                }
+                                setState(() {
+                                  showSpinner=false;
+                                });
+                              },
                               child:Text(
                                 'Log In',
                                 style: TextStyle(

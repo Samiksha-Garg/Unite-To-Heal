@@ -1,6 +1,9 @@
+import 'package:UniteToHeal/Loading.dart';
+import 'package:UniteToHeal/Screens/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:UniteToHeal/CustomWidgets/custom_widgets.dart';
 import 'package:UniteToHeal/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'screens.dart';
 
 class SignUp extends StatefulWidget {
@@ -16,11 +19,33 @@ class _SignUpState extends State<SignUp> {
 
   Occupation? _character=Occupation.Doctor;
   Gender? _gender=Gender.Male;
+  bool showSpinner = false;
+
+  final _email=TextEditingController();
+  final _password = TextEditingController();
+  final _username = TextEditingController();
+  final _name = TextEditingController();
+
+  bool _nameValidate = false;
+  bool _usernameValidate = false;
+
+  final String errorM= '... Can\'t leave this field empty';
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    _username.dispose();
+    _name.dispose();
+    super.dispose();
+  }
+
+  final _auth=FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return showSpinner? Loading() : Scaffold(
       appBar: AppBar(
         leadingWidth: 180,
         leading: Center(
@@ -83,11 +108,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: InputBox(title: 'Enter your full name', obscureText: false, icon: Icons.person_outline,),
+                          child: InputBox(title: 'Enter your full name', obscureText: false, icon: Icons.person_outline,control: _name,visible: _nameValidate,),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: InputBox(title: 'Enter your email Id', obscureText: false, icon: Icons.mail,),
+                          child: InputBox(title: 'Enter your email Id', obscureText: false, icon: Icons.mail, control: _email,visible: false,),
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -133,11 +158,13 @@ class _SignUpState extends State<SignUp> {
                             obscureText: false,
                             title: 'Enter username',
                             icon: Icons.person_add,
+                            control: _username,
+                            visible: _usernameValidate,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: InputBox(title: 'Enter Password', obscureText: true, icon: Icons.password,),
+                          child: InputBox(title: 'Enter Password', obscureText: true, icon: Icons.password,control: _password,visible: false,),
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -171,7 +198,38 @@ class _SignUpState extends State<SignUp> {
                           style: TextButton.styleFrom(
                               primary: Colors.white
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            setState(() {
+                              showSpinner = true;
+                              _usernameValidate = _username.text.isEmpty ? true : false;
+                              _nameValidate = _name.text.isEmpty ? true : false;
+                            });
+
+                            if (_usernameValidate==false && _nameValidate==false) {
+                              try {
+                                final newUser = await _auth
+                                    .createUserWithEmailAndPassword(
+                                    email: _email.text.trim(),
+                                    password: _password.text.trim());
+
+                                if (newUser != null) {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, UserPage.id, (route) => false);
+                                }
+
+                                setState(() {
+                                  showSpinner = false;
+                                });
+                              }
+                              catch (e) {
+                                print(e);
+                              }
+                            }
+
+                            setState(() {
+                              showSpinner = false;
+                            });
+                          },
                           child:Text(
                             'Sign Up',
                             style: TextStyle(

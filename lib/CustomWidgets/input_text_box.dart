@@ -2,11 +2,13 @@ import 'package:UniteToHeal/constants.dart';
 import 'package:flutter/material.dart';
 
 class InputBox extends StatelessWidget {
-  const InputBox({Key? key,required this.title, required this.icon, required this.obscureText}) : super(key: key);
+  const InputBox({Key? key,required this.title, required this.icon, required this.obscureText, required this.control,required this.visible}) : super(key: key);
 
   final bool obscureText;
   final String title;
   final IconData icon;
+  final TextEditingController control;
+  final bool visible;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,28 @@ class InputBox extends StatelessWidget {
           color: kPurple,
         )
       ),
-      child: TextField(
-        cursorColor: Colors.grey,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(icon,color: Colors.grey,),
-            hintText: title
-        ),
+      child: Column(
+        children: [
+          TextField(
+            controller: control,
+            cursorColor: Colors.grey,
+            obscureText: obscureText,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                prefixIcon: Icon(icon,color: Colors.grey,),
+                hintText: title,
+            ),
+          ),
+          Visibility(
+            child: Text(
+              'This field is mandatory',
+              style: TextStyle(
+                color: Colors.red
+              )
+            ),
+            visible: visible,
+          )
+        ],
       ),
     );
   }

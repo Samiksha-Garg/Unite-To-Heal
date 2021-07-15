@@ -15,6 +15,14 @@ class BlogPage extends StatefulWidget {
 
 class _BlogPageState extends State<BlogPage> {
 
+  final _search=TextEditingController();
+
+  @override
+  void dispose() {
+    _search.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -50,9 +58,11 @@ class _BlogPageState extends State<BlogPage> {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: InputBox(
+                    control: _search,
                       title: 'Search what you are looking for',
                       icon: Icons.search,
-                      obscureText: false
+                      obscureText: false,
+                      visible: false,
                   ),
                 ),
                 SingleChildScrollView(

@@ -1,73 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:UniteToHeal/Screens/screens.dart';
 import 'constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+  final User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        HomePage.id:(context)=>HomePage(),
-        SignUp.id:(context)=>SignUp(),
-        LogInPage.id:(context)=>LogInPage(),
-        BlogPage.id:(context)=>BlogPage(),
-        DonateHomePage.id:(context)=>DonateHomePage(),
-      },
-      title: 'Unite To Heal',
-      theme: ThemeData(
-          primaryColor: kPrimaryColor,
-          unselectedWidgetColor: Colors.white
-      ),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            leadingWidth: 200,
-            leading: Center(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 13.0),
-                child: Text(
-                  'Welcome!',
-                  style: TextStyle(
-                    color: kPurple,
-                    fontFamily: 'Pacifico',
-                    fontSize: 25,
-                  ),
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(onPressed: (){},
-                  icon: Icon(Icons.settings, color: kPurple, size: 30,)
-              ),
-            ],
-            bottom: TabBar(
-              indicatorColor: kPurple,
-              labelStyle: kTabBarStyle,
-              labelColor: kPurple,
-              unselectedLabelColor: kPurple.withAlpha(90),
-              tabs: [
-                Text('HOME'),
-                Text('OUR MISSION'),
-                Text('CONTACT US'),
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: [
-              HomePage(),
-              MissionPage(),
-              ContactUsPage(),
-            ],
-          ),
-        ),
-      ),
-    );
+    return  user == null ? NoUser() : UserPage();
   }
 }
+

@@ -18,6 +18,18 @@ class _DonateHomePageState extends State<DonateHomePage> {
   bool? anonymousChecked = false;
   bool? emailChecked = false;
 
+  final _email=TextEditingController();
+  final _lname = TextEditingController();
+  final _fname = TextEditingController();
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _lname.dispose();
+    _fname.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +86,9 @@ class _DonateHomePageState extends State<DonateHomePage> {
                         InputBox(
                             title: 'Enter First Name',
                             icon: Icons.person,
-                            obscureText: false
+                            obscureText: false,
+                            control: _fname,
+                            visible: false,
                         ),
                         SizedBox(
                           height: 15,
@@ -82,7 +96,9 @@ class _DonateHomePageState extends State<DonateHomePage> {
                         InputBox(
                             title: 'Enter Last Name',
                             icon: Icons.person,
-                            obscureText: false
+                            obscureText: false,
+                            control: _lname,
+                            visible: false,
                         ),
                         SizedBox(
                           height: 15,
@@ -90,7 +106,9 @@ class _DonateHomePageState extends State<DonateHomePage> {
                         InputBox(
                             title: 'Enter your email Id',
                             icon: Icons.mail,
-                            obscureText: false
+                            obscureText: false,
+                            control: _email,
+                          visible: false,
                         ),
                         SizedBox(
                           height: 15,
