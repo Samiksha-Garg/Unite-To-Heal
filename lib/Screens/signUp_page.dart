@@ -5,6 +5,7 @@ import 'package:UniteToHeal/CustomWidgets/custom_widgets.dart';
 import 'package:UniteToHeal/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -17,11 +18,11 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
-  Occupation? _character=Occupation.Doctor;
-  Gender? _gender=Gender.Male;
+  Occupation? _character = Occupation.Doctor;
+  Gender? _gender = Gender.Male;
   bool showSpinner = false;
 
-  final _email=TextEditingController();
+  final _email = TextEditingController();
   final _password = TextEditingController();
   final _username = TextEditingController();
   final _name = TextEditingController();
@@ -40,12 +41,14 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-  final _auth=FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return showSpinner? Loading() : Scaffold(
+    final Size size = MediaQuery
+        .of(context)
+        .size;
+    return showSpinner ? Loading() : Scaffold(
       appBar: AppBar(
         leadingWidth: 180,
         leading: Center(
@@ -62,7 +65,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         actions: [
-          IconButton(onPressed: (){},
+          IconButton(onPressed: () {},
               icon: Icon(Icons.settings, color: kPurple, size: 30,)
           ),
         ],
@@ -84,7 +87,7 @@ class _SignUpState extends State<SignUp> {
             ),
             showAlert(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -109,11 +112,19 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: InputBox(title: 'Enter your full name', obscureText: false, icon: Icons.person_outline,control: _name,visible: _nameValidate,),
+                          child: InputBox(title: 'Enter your full name',
+                            obscureText: false,
+                            icon: Icons.person_outline,
+                            control: _name,
+                            visible: _nameValidate,),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: InputBox(title: 'Enter your email Id', obscureText: false, icon: Icons.mail, control: _email,visible: false,),
+                          child: InputBox(title: 'Enter your email Id',
+                            obscureText: false,
+                            icon: Icons.mail,
+                            control: _email,
+                            visible: false,),
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -125,7 +136,7 @@ class _SignUpState extends State<SignUp> {
                                   value: Gender.Male,
                                   function: (Gender? value) {
                                     setState(() {
-                                      _gender=value;
+                                      _gender = value;
                                     });
                                   },
                                   title: 'Male'
@@ -135,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                                   value: Gender.Female,
                                   function: (Gender? value) {
                                     setState(() {
-                                      _gender=value;
+                                      _gender = value;
                                     });
                                   },
                                   title: 'Female'
@@ -145,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                                   value: Gender.Other,
                                   function: (Gender? value) {
                                     setState(() {
-                                      _gender=value;
+                                      _gender = value;
                                     });
                                   },
                                   title: 'Other'
@@ -154,7 +165,8 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 20,left: 10,right: 10,bottom: 10),
+                          padding: EdgeInsets.only(
+                              top: 20, left: 10, right: 10, bottom: 10),
                           child: InputBox(
                             obscureText: false,
                             title: 'Enter username',
@@ -165,7 +177,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: InputBox(title: 'Enter Password', obscureText: true, icon: Icons.password,control: _password,visible: false,),
+                          child: InputBox(title: 'Enter Password',
+                            obscureText: true,
+                            icon: Icons.password,
+                            control: _password,
+                            visible: false,),
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -177,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                                   value: Occupation.Doctor,
                                   function: (Occupation? value) {
                                     setState(() {
-                                      _character=value;
+                                      _character = value;
                                     });
                                   },
                                   title: 'Doctor'
@@ -187,7 +203,7 @@ class _SignUpState extends State<SignUp> {
                                   value: Occupation.Other,
                                   function: (Occupation? value) {
                                     setState(() {
-                                      _character=value;
+                                      _character = value;
                                     });
                                   },
                                   title: 'Other'
@@ -202,11 +218,13 @@ class _SignUpState extends State<SignUp> {
                           onPressed: () async {
                             setState(() {
                               showSpinner = true;
-                              _usernameValidate = _username.text.isEmpty ? true : false;
+                              _usernameValidate =
+                              _username.text.isEmpty ? true : false;
                               _nameValidate = _name.text.isEmpty ? true : false;
                             });
 
-                            if (_usernameValidate==false && _nameValidate==false) {
+                            if (_usernameValidate == false &&
+                                _nameValidate == false) {
                               try {
                                 final newUser = await _auth
                                     .createUserWithEmailAndPassword(
@@ -214,8 +232,30 @@ class _SignUpState extends State<SignUp> {
                                     password: _password.text);
 
                                 if (newUser != null) {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, UserPage.id, (route) => false);
+                                  User? user = FirebaseAuth.instance.currentUser;
+
+                                try {
+                                  if (user!= null && !user.emailVerified) {
+                                    await user.sendEmailVerification();
+                                    Fluttertoast.showToast(
+                                        msg: "Verification Link sent to your email. Click on it to verify yourself",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 5,
+                                        backgroundColor: Colors.grey,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0
+                                    );
+
+                                    Navigator.pushReplacementNamed(
+                                        context, LogInPage.id);
+                                  }
+                                }
+                                catch(e){
+                                  print(e);
+                                }
+
+                                  _auth.signOut();
                                 }
 
                                 setState(() {
@@ -235,13 +275,13 @@ class _SignUpState extends State<SignUp> {
                               showSpinner = false;
                             });
                           },
-                          child:Text(
+                          child: Text(
                             'Sign Up',
                             style: TextStyle(
                                 fontSize: 30,
                                 fontFamily: 'Coiny'
                             ),
-                          ) ,
+                          ),
                         )
                       ],
                     ),
@@ -266,7 +306,8 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   CircleAvatar(
                     radius: size.width * 0.15,
-                    backgroundImage: ExactAssetImage('assets/images/google-logo.png'),
+                    backgroundImage: ExactAssetImage(
+                        'assets/images/google-logo.png'),
                   ),
                   SizedBox(
                     width: 10,
@@ -274,7 +315,8 @@ class _SignUpState extends State<SignUp> {
                   CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: size.width * 0.13,
-                    backgroundImage: ExactAssetImage('assets/images/Facebook-logo.png'),
+                    backgroundImage: ExactAssetImage(
+                        'assets/images/Facebook-logo.png'),
                   ),
                 ],
               ),
@@ -284,6 +326,7 @@ class _SignUpState extends State<SignUp> {
                     primary: kDarkBlue
                 ),
                 onPressed: () {
+
                   Navigator.pushReplacementNamed(context, LogInPage.id);
                 },
                 child: Row(
@@ -312,20 +355,23 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+
   Widget showAlert() {
-    if(_errorM!=null) {
+    if (_errorM != null) {
       return Container(
         color: Colors.red,
         width: double.infinity,
         padding: EdgeInsets.all(8),
         child: Row(
           children: [
-            Padding(padding: EdgeInsets.only(right: 8), child: Icon(Icons.error_outline,color: Colors.white,),),
-            Expanded(child:Text(_errorM.toString(),style: TextStyle(color: Colors.white),)),
+            Padding(padding: EdgeInsets.only(right: 8),
+              child: Icon(Icons.error_outline, color: Colors.white,),),
+            Expanded(child: Text(
+              _errorM.toString(), style: TextStyle(color: Colors.white),)),
             Padding(padding: EdgeInsets.only(left: 8),
               child: IconButton(
-                icon: Icon(Icons.close,color: Colors.white,),
-                onPressed: (){
+                icon: Icon(Icons.close, color: Colors.white,),
+                onPressed: () {
                   setState(() {
                     _errorM = null;
                   });
@@ -340,4 +386,6 @@ class _SignUpState extends State<SignUp> {
       height: 0,
     );
   }
+
+
 }

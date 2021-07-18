@@ -4,6 +4,7 @@ import 'package:UniteToHeal/CustomWidgets/custom_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens.dart';
 import 'package:UniteToHeal/Loading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -122,8 +123,20 @@ class _LogInPageState extends State<LogInPage> {
                                 try{
                                   final user = await _auth.signInWithEmailAndPassword(email: _email.text.trim(), password: _password.text.trim());
 
-                                  if(user !=null) {
+                                  if(user !=null && _auth.currentUser!.emailVerified) {
                                     Navigator.pushNamedAndRemoveUntil(context, UserPage.id, (route) => false);
+                                  }
+                                  else {
+                                    Fluttertoast.showToast(
+                                        msg: "Verify yourself by clicking on link sent to your email",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 5,
+                                        backgroundColor: Colors.grey,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+
+                                    _auth.signOut();
                                   }
                                 }
                                 catch(e){
