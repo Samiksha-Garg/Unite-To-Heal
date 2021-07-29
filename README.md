@@ -8,4 +8,6 @@ Screenshots of some of the screens in app:
 
 <img width="559" alt="Screenshot 2021-07-29 at 2 39 47 PM" src="https://user-images.githubusercontent.com/79906086/127465492-f45cbe34-7b93-4d2a-9a52-715fa89162f7.png">
 
+<img width="544" alt="Screenshot 2021-07-29 at 2 40 55 PM" src="https://user-images.githubusercontent.com/79906086/127465933-ceab6bad-24e5-483b-b38a-43768f43bec5.png"><img width="544" alt="image" src="https://user-images.githubusercontent.com/79906086/127466046-33044613-1d3b-4b74-b772-bcbdb1e94d5c.png">
+
 
